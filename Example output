@@ -1,0 +1,17 @@
+Welcome to the Calculator!
+Please enter your arithmetic expression (or 'history' to view past calculations, 'exit' to quit): abs(-5)
+Result: 5.0
+Do you want to continue? (y/n): y
+Please enter your arithmetic expression (or 'history' to view past calculations, 'exit' to quit): 34+(76-45)*2 - abs(-5)
+Result: 91.0
+Do you want to continue? (y/n): y
+Please enter your arithmetic expression (or 'history' to view past calculations, 'exit' to quit): sqrt(25)
+Result: 5.0
+Do you want to continue? (y/n): y
+Please enter your arithmetic expression (or 'history' to view past calculations, 'exit' to quit): power(2, 3)
+Result: 8.0
+Do you want to continue? (y/n): y
+Please enter your arithmetic expression (or 'history' to view past calculations, 'exit' to quit): round(3.2) + round(7.8)
+Result: 11.0
+Do you want to continue? (y/n): n
+Thank you for using the Calculator!
