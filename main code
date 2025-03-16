@@ -1,0 +1,59 @@
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Calculator {
+    private static final ArrayList<String> history = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
+
+        System.out.println("Welcome to the Calculator!");
+        while (true) {
+            System.out.print("Please enter your arithmetic expression (or 'history' to view past calculations, 'exit' to quit): ");
+            String input = scanner.nextLine().trim();
+
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Thank you for using the Calculator!");
+                break;
+            } else if (input.equalsIgnoreCase("history")) {
+                if (history.isEmpty()) {
+                    System.out.println("No calculations yet.");
+                } else {
+                    System.out.println("Calculation History:");
+                    for (String entry : history) {
+                        System.out.println(entry);
+                    }
+                }
+                continue;
+            }
+
+            try {
+                String processedInput = preprocessExpression(input);
+                Object result = engine.eval(processedInput);
+                System.out.println("Result: " + result);
+                history.add(input + " = " + result);
+            } catch (ScriptException e) {
+                System.out.println("Error: Invalid expression.");
+            }
+
+            System.out.print("Do you want to continue? (y/n): ");
+            String choice = scanner.nextLine().trim();
+            if (choice.equalsIgnoreCase("n")) {
+                System.out.println("Thank you for using the Calculator!");
+                break;
+            }
+        }
+        scanner.close();
+    }
+
+    private static String preprocessExpression(String input) {
+        return input.replace("abs", "Math.abs")
+                    .replace("sqrt", "Math.sqrt")
+                    .replace("power", "Math.pow")
+                    .replace("round", "Math.round");
+    }
+}
